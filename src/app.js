@@ -1,35 +1,30 @@
 const express = require('express');
-
+const connectDB = require("./config/database");
 const app = express();
+const User = require("./models/user");
 
-app.use("/user",(req,res)=>{
-    res.send("Hello from server !");
+app.post("/signup", async (req, res) => {
+// Creating a new instance of the User model
+    const user = new User({
+        firstName: "Uday",
+        lastName: "Chauhan",
+        emailId: "udaychauhan246r@gmail.com",
+        password: "RadheShyam",
+        _id: '343',
+    });
+    await user.save();
+    res.send("User added sucessfully");
 });
 
-// Define middleware functions
-// const rH = (req, res, next) => { console.log("rH middleware"); next(); };
-// const rH2 = (req, res, next) => { console.log("rH2 middleware"); next(); };
-// const rh3 = (req, res, next) => { console.log("rh3 middleware"); next(); };
-// const rh4 = (req, res, next) => { console.log("rh4 middleware"); next(); };
-// const rh5 = (req, res, next) => { console.log("rh5 middleware"); next(); };
 
-// app.use("/route",rH,[rH2,rh3],rh4,rh5);  // we can put in array it will behave the same
+connectDB()
+ .then(()=>{
+    console.log("Database connection established....");
+    app.listen(3000,()=>{
+        console.log("Server successfully run on port no. 3000....");
+    }); 
+ })
+ .catch((err)=>{
+    console.log("Database cannot be established");
+ });
 
-app.get(
-    "/users",
-    (req,res,next)=>{
-        console.log("Handling the riute user1");
-        next();
-    },
-    (req,res,next)=>{
-        console.log("Handling the riute user2");
-        next();
-    }, (req,res)=>{
-        console.log("Handling the riute user3");
-        res.send("3rd response");
-    },
-)
-
-app.listen(3000,()=>{
-    console.log("Successfull");
-}); 
