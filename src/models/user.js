@@ -69,6 +69,16 @@ const userSchema = new mongoose.Schema({
     timestamps: true,
 });
 
+// if we have to find user by first and last name then we will do below code to make our queries fast (concept of indexes - below we use compound indexing)
+// User.find({ firstName: "Priyavadini", lastName: "Radhe"});
+// userSchema.index({ firstName: 1, lastName: 1 });
+
+// we can also create index for gender as :
+// userSchema.index({ gender: 1 });
+
+// If providing index make our query fast, as we can't provide them to all fields- the reason is that providing indexes unneccessary results in more cost.
+//unique also provide index automaticaly and managed by mongoDB itself, but we can't use it in Name as it will not allow same name person
+
 userSchema.methods.getJWT = async function () {
     const user = this;
 
