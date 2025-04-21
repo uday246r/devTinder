@@ -18,9 +18,9 @@
 -POST /request/review/rejected/:requestId -->
 
 # userRouter
--GET /connections
--GET /requests/received
--GET /feed - Gets you the profiles of other users on platform
+-GET /user/requests
+-GET /user/connections
+-GET /user/feed - Gets you the profiles of other users on platform
 
 
 Status: ignore, interested, accepted, rejected

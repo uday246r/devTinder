@@ -5,7 +5,7 @@ const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
- authRouter.get('/')
+ 
 
 
 
@@ -54,7 +54,7 @@ const jwt = require("jsonwebtoken");
             res.cookie("token",token, {
                 expires: new Date(Date.now() + 8 * 36000000),
             });
-            res.send("Login Successfully!!");
+            res.send(user);
         } else{
             throw new Error("Invalid credentials");
         }
