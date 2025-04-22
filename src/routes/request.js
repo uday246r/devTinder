@@ -5,11 +5,11 @@ const { userAuth } = require("../middlewares/auth");
 const ConnectionRequest = require("../models/connectionRequest");
 const User = require("../models/user");
 
-requestRouter.post("/sendConnectionRequest",userAuth,  async(req,res) => {
-    const user = req.user;
-    console.log("Sending connection request");
-    res.send(user.firstName + "sent the connect request!");
-});
+// requestRouter.post("/sendConnectionRequest",userAuth,  async(req,res) => {
+//     const user = req.user;
+//     console.log("Sending connection request");
+//     res.send(user.firstName + "sent the connect request!");
+// });
 
 requestRouter.post(
     "/request/send/:status/:toUserId",
